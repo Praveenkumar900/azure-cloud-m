@@ -1,0 +1,378 @@
+---
+
+# 🧱 1. Resource Groups
+
+---
+
+## 🗣️ Concept Explanation
+
+“A **Resource Group** is a container that holds related Azure resources.”
+
+👉 Think of it like:
+
+* A folder in your computer
+* Or a project workspace
+
+---
+
+## 🧠 Real-Life Example
+
+“If you're building a web app, you might have:
+
+* Web App
+* Database
+* Storage
+
+👉 All grouped inside ONE Resource Group”
+
+---
+Resource Group (MyApp-RG)
+ ├── Web App
+ ├── Database
+ └── Storage Account
+```
+
+---
+
+## 🛠️ Hands-On: Create a Resource Group
+
+### 👉 Steps (Follow Along)
+
+1. Go to Azure Portal
+2. Search → **Resource Groups**
+3. Click **+ Create**
+4. Fill details:
+
+   * Subscription → Select yours
+   * Resource Group Name → `Demo-RG`
+   * Region → `Central India`
+5. Click **Review + Create**
+6. Click **Create**
+
+---
+
+👉 “Why group resources together?”
+
+(answer: easy management, delete together, organize)
+
+---
+
+# 🏷️ 2. Tags (Organization & Cost Tracking)
+
+---
+
+“Tags are **key-value pairs** used to organize resources.”
+
+---
+
+## 🧠 Real-Life Example
+
+In a company:
+
+* Project = E-commerce
+* Environment = Production
+* Owner = Team A
+
+---
+
+## 📦 Example
+
+```
+Tag:
+Environment = Production
+Department = Finance
+```
+
+---
+
+## 🛠️ Hands-On: Add Tags
+
+### 👉 Steps:
+
+1. Open your **Resource Group (Demo-RG)**
+2. Go to **Tags** section
+3. Add:
+
+   * Key: `Environment` → Value: `Demo`
+4. Click **Save**
+
+---
+
+## 🎯 Why Tags Matter:
+
+* Cost tracking
+* Organization
+* Filtering resources
+
+---
+
+# 📜 3. Azure Policies
+
+---
+
+“Azure Policy helps enforce rules across resources.”
+
+👉 Example rules:
+
+* Only allow specific regions
+* Enforce naming conventions
+* Require tags
+
+---
+
+## 🧠 Real-Life Example
+
+“A company may say:
+👉 ‘All resources must be created only in India region’”
+
+```
+Policy:
+Only allow region = Central India
+
+User tries → West US ❌ Blocked
+```
+
+---
+
+## 🛠️ Hands-On: Apply a Policy
+
+### 👉 Steps:
+
+1. Search → **Policy**
+2. Go to **Assignments**
+3. Click **Assign Policy**
+4. Scope → Select your subscription
+5. Choose policy:
+
+   * “Allowed locations”
+6. Set allowed region:
+
+   * Central India
+7. Click **Review + Create**
+
+---
+
+👉 “Why enforce policies?”
+
+(answer: governance, compliance, control)
+
+---
+
+# 🔐 4. Role-Based Access Control (RBAC)
+
+“RBAC controls **who can do what** in Azure.”
+
+---
+
+## 🧠 Real-Life Example
+
+In a company:
+
+* Admin → Full access
+* Developer → Create resources
+* Viewer → Read-only
+
+---
+
+## 📦 Roles
+
+* Owner → Full control
+* Contributor → Can create/edit
+* Reader → View only
+---
+
+## 🛠️ Hands-On: Assign a Role
+
+### 👉 Steps:
+
+1. Open your **Resource Group (Demo-RG)**
+2. Go to **Access Control (IAM)**
+3. Click **+ Add → Add Role Assignment**
+4. Select Role:
+
+   * Reader
+5. Assign to:
+
+   * Your user account
+6. Click **Save**
+
+---
+
+👉 “Should every user be Owner?”
+
+(answer: No → security risk)
+
+---
+
+# 💻 5. Azure CLI & PowerShell (Intro)
+
+“So far, we used the Portal.
+
+But professionals also use:
+
+* Command Line (CLI)
+* Scripts for automation”
+
+---
+
+## 🧠 Real-Life Example
+
+Instead of clicking 10 times:
+👉 Run one command → resource created
+
+---
+
+## 💻 Example (Azure CLI)
+
+```bash
+az group create --name Demo-RG --location centralindia
+```
+
+---
+
+## 💻 Example (PowerShell)
+
+```powershell
+New-AzResourceGroup -Name Demo-RG -Location "Central India"
+```
+---
+
+“When you work in Azure:
+
+1. Create a Resource Group
+2. Apply Tags
+3. Enforce Policies
+4. Assign Roles
+5. Deploy resources
+
+👉 This is the standard workflow”
+
+---
+
+## 📦 Full Flow Diagram
+
+```
+Subscription
+   ↓
+Resource Group
+   ↓
+Resources (VM, App, DB)
+   ↓
+Controlled by:
+- Tags
+- Policies
+- RBAC
+```
+
+---
+
+# 🧠 Mini Lab (Combine Everything)
+
+---
+
+## 🎯 Task:
+
+“Create a properly managed environment”
+
+---
+
+### Steps:
+
+1. Create Resource Group → `Project-RG`
+2. Add Tag:
+
+   * Environment = Dev
+3. Assign Role:
+
+   * Reader to another user
+4. Apply Policy:
+
+   * Restrict region
+
+---
+
+👉 This simulates **real enterprise setup**
+
+---
+
+# 📝 MCQs
+
+---
+
+## 1. What is a Resource Group?
+
+A. Virtual machine
+B. Container for resources
+C. Storage account
+D. Region
+
+✅ Answer: B
+
+---
+
+## 2. Tags are used for:
+
+A. Security only
+B. Organization and cost tracking
+C. Deployment
+D. Networking
+
+✅ Answer: B
+
+---
+
+## 3. Azure Policy is used for:
+
+A. Monitoring
+B. Enforcing rules
+C. Storage
+D. Billing
+
+✅ Answer: B
+
+---
+
+## 4. RBAC controls:
+
+A. Storage
+B. Networking
+C. Access permissions
+D. Regions
+
+✅ Answer: C
+
+---
+
+## 5. Which role has full control?
+
+A. Reader
+B. Contributor
+C. Owner
+D. Guest
+
+✅ Answer: C
+
+---
+
+## 6. Azure CLI is used for:
+
+A. GUI management
+B. Command-line operations
+C. Storage only
+D. Security
+
+✅ Answer: B
+
+---
+
+“These core concepts are the *foundation of everything in Azure*.
+
+If you understand:
+
+* Resource Groups
+* RBAC
+* Policies
+
+👉 You can manage any Azure environment professionally.”
+
+---
