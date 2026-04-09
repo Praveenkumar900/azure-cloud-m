@@ -1,5 +1,3 @@
-Great—this is the perfect place to start. If the fundamentals are strong, everything in Azure becomes much easier to grasp.
-
 ---
 
 # 🌩️ 1. Cloud Computing Fundamentals (Detailed)
@@ -97,6 +95,8 @@ You use ready-made software via browser.
 | IaaS | High control  | VMs         |
 | PaaS | Medium        | App hosting |
 | SaaS | Low           | Email apps  |
+
+<img width="1320" height="978" alt="image" src="https://github.com/user-attachments/assets/09f15895-7e7a-42ac-96e6-a6a85cd2d76d" />
 
 ---
 
@@ -200,8 +200,6 @@ B. Delivering computing services over the internet
 C. Installing software locally
 D. Using only private networks
 
-✅ **Answer:** B
-
 ---
 
 ## 2. Which cloud model gives the MOST control to the user?
@@ -210,8 +208,6 @@ A. SaaS
 B. PaaS
 C. IaaS
 D. Hybrid
-
-✅ **Answer:** C
 
 ---
 
@@ -222,8 +218,6 @@ B. PaaS
 C. On-premise
 D. Private cloud
 
-✅ **Answer:** B
-
 ---
 
 ## 4. Which of the following is an example of SaaS?
@@ -232,8 +226,6 @@ A. Virtual Machines
 B. Azure App Service
 C. Gmail
 D. Kubernetes
-
-✅ **Answer:** C
 
 ---
 
@@ -244,8 +236,6 @@ B. Manual scaling
 C. Automatic scaling based on demand
 D. Data backup
 
-✅ **Answer:** C
-
 ---
 
 ## 6. Which deployment model combines public and private cloud?
@@ -254,8 +244,6 @@ A. Public
 B. Private
 C. Hybrid
 D. SaaS
-
-✅ **Answer:** C
 
 ---
 
@@ -266,8 +254,6 @@ B. Customer
 C. Both
 D. Nobody
 
-✅ **Answer:** B
-
 ---
 
 ## 8. Which is NOT a benefit of cloud computing?
@@ -276,8 +262,6 @@ A. Scalability
 B. High upfront cost
 C. Global access
 D. Flexibility
-
-✅ **Answer:** B
 
 ---
 
@@ -288,8 +272,6 @@ B. Cloud provider
 C. Developer
 D. User
 
-✅ **Answer:** B
-
 ---
 
 ## 10. Which model provides ready-to-use software?
@@ -299,12 +281,17 @@ B. PaaS
 C. SaaS
 D. Hybrid
 
-✅ **Answer:** C
 
+Answers:
+1. B
+2. C
+3. B
+4. C
+5. C
+6. C
+7. B
+8. B
+9. B
+10. C
 ---
 
-If you want next, I can:
-
-* Turn this into a **teaching script you can present**
-* Add **real-life examples + diagrams**
-* Or move to **Module 2: Azure Introduction**
