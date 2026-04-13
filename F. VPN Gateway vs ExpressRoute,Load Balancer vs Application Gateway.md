@@ -1,14 +1,6 @@
-Perfect—this is where Azure networking becomes **real-world architecture**. I’ll keep this in your teaching style: **clear explanation → comparison → real use case → hands-on steps**.
-
----
 
 # 🌐 Part 1: VPN Gateway vs ExpressRoute
 
----
-
-# 🔐 VPN Gateway in Microsoft Azure
-
----
 
 ## 🗣️ What is VPN Gateway?
 
@@ -23,13 +15,7 @@ Perfect—this is where Azure networking becomes **real-world architecture**. I�
 
 ## 📦 Diagram
 
-```id="vpn1"
-On-Prem Network
-     ↓ (Internet - Encrypted)
-VPN Gateway (Azure)
-     ↓
-Azure VNet
-```
+<img width="1107" height="606" alt="image" src="https://github.com/user-attachments/assets/b128e1ed-a230-426a-9690-d75f53dbb0ba" />
 
 ---
 
@@ -198,19 +184,6 @@ Steps:
 
 ---
 
-## 📦 Diagram
-
-```id="lb2"
-User
- ↓
-Load Balancer
- ├── VM1
- ├── VM2
- └── VM3
-```
-
----
-
 ## 🧠 Use Case
 
 * Distribute traffic to VMs
@@ -271,14 +244,8 @@ Search → **Load Balancer** → Create
 
 ## 📦 Diagram
 
-```id="appgw1"
-User
- ↓
-Application Gateway
- ├── /api → Server 1
- ├── /images → Server 2
- └── /web → Server 3
-```
+<img width="223" height="155" alt="image" src="https://github.com/user-attachments/assets/823efb59-9b61-4834-b4e9-3b75399e63f6" />
+
 
 ---
 
@@ -299,7 +266,218 @@ Website:
 * SSL termination
 * Web Application Firewall (WAF)
 
+====================================================================
+
+# 🔐 1. SSL Termination (What it actually means)
+
 ---
+
+## 🗣️ Simple Definition
+
+“SSL Termination means **decrypting HTTPS traffic at the gateway instead of the backend servers**.”
+
+---
+
+## 🧠 Step-by-Step Flow (Without SSL Termination)
+
+<img width="232" height="156" alt="image" src="https://github.com/user-attachments/assets/f6a55c5e-e64f-472e-b27f-b4956c238b25" />
+
+
+👉 Problem:
+
+* Every server must handle encryption/decryption
+* More CPU usage
+* Harder to manage certificates
+
+---
+
+## 🧠 With SSL Termination (Application Gateway)
+
+<img width="166" height="154" alt="image" src="https://github.com/user-attachments/assets/bba9f4b2-dc51-431d-8b4b-7476bb30ed06" />
+
+---
+
+## 🧠 What’s happening?
+
+* User sends HTTPS request 🔒
+* Gateway:
+
+  * Decrypts it
+  * Reads request (URL, headers)
+* Sends plain HTTP to backend
+
+---
+
+## 🎯 Why use SSL Termination?
+
+### ✅ Benefits:
+
+* Better performance (servers don’t do encryption work)
+* Centralized certificate management
+* Enables **smart routing (Layer 7)**
+
+---
+
+## 🧠 Real-Life Example
+
+E-commerce website:
+
+👉 Users → HTTPS
+👉 Application Gateway:
+
+* Decrypts traffic
+* Routes `/api` to API server
+* Routes `/images` to image server
+
+---
+
+# 🛡️ 2. Web Application Firewall (WAF)
+
+---
+
+## 🗣️ Simple Definition
+
+“WAF protects web applications from **common internet attacks**.”
+
+---
+
+## 🧠 What kind of attacks?
+
+* SQL Injection
+* Cross-Site Scripting (XSS)
+* Malicious requests
+* Bots / suspicious traffic
+
+---
+
+## 📦 Diagram
+
+<img width="148" height="140" alt="image" src="https://github.com/user-attachments/assets/56cc18d9-1a1f-4a70-93ce-51bd5606d186" />
+
+---
+
+## 🧠 Real-Life Example
+
+User sends:
+
+```
+https://example.com/login?user=admin' OR 1=1--
+```
+
+👉 This is a **SQL Injection attack**
+
+👉 WAF:
+
+* Detects malicious pattern
+* Blocks request ❌
+
+---
+
+## 🎯 What WAF Does
+
+* Inspects HTTP/HTTPS traffic
+* Applies security rules
+* Blocks harmful requests
+* Logs attacks
+
+---
+
+## 🧠 Modes of WAF
+
+* Detection mode → Only logs
+* Prevention mode → Blocks traffic
+
+---
+
+# ⚖️ Now the Important Part: In Load Balancer vs Application Gateway
+
+---
+
+## ❌ Azure Load Balancer
+
+* Works at **Layer 4 (TCP/UDP)**
+* Does NOT understand:
+
+  * HTTP
+  * URLs
+  * SSL
+
+👉 So:
+
+| Feature         | Supported? |
+| --------------- | ---------- |
+| SSL Termination | ❌ No       |
+| WAF             | ❌ No       |
+
+---
+
+## ✅ Application Gateway
+
+* Works at **Layer 7 (HTTP/HTTPS)**
+* Fully understands web traffic
+
+👉 So:
+
+| Feature         | Supported? |
+| --------------- | ---------- |
+| SSL Termination | ✅ Yes      |
+| WAF             | ✅ Yes      |
+
+---
+
+# 🧠 Simple Analogy
+
+* Load Balancer = Security guard checking entry passes only
+* Application Gateway = Smart guard checking:
+
+  * ID
+  * Intent
+  * Behavior
+
+---
+
+# 🧠 Real-World Scenario (Put Together)
+
+---
+
+“You have a banking website”
+
+👉 Setup:
+
+* Application Gateway (with WAF)
+
+  * Handles HTTPS
+  * Decrypts traffic (SSL termination)
+  * Blocks attacks
+
+* Backend servers:
+
+  * Only handle application logic
+
+---
+
+# 🎯 Key Takeaways (Very Important)
+
+* SSL Termination = **decrypt HTTPS at gateway**
+* WAF = **protect app from web attacks**
+* Only **Application Gateway** supports both
+* Load Balancer is **not aware of web traffic**
+
+---
+
+# 📝 Quick Check Questions
+
+1. Does Azure Load Balancer support SSL termination?
+   👉 ❌ No
+
+2. Where should WAF be placed?
+   👉 At Application Gateway
+
+3. Why not do SSL on backend servers?
+   👉 More load + harder to manage
+
+
+====================================================================
 
 ## 🛠️ Hands-On: Create Application Gateway
 
@@ -432,22 +610,3 @@ D. None
 
 ---
 
-# 🎯 Closing
-
-“These are **real enterprise networking tools** in Azure.
-
-Once you understand:
-
-* Connectivity (VPN / ExpressRoute)
-* Traffic management (LB / App Gateway)
-
-👉 You can design real cloud architectures.”
-
----
-
-## 🚀 Next Options
-
-I can take you to:
-
-* **NSG + Firewall deep dive (with labs)**
-* OR **Full real-world architecture design (interview level)**
